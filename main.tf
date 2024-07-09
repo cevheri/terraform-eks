@@ -18,6 +18,13 @@ module "rds" {
   vpc_id = module.vpc.vpc_id
 }
 
+module "msk" {
+  source     = "./modules/msk"
+  subnet_ids = module.vpc.subnet_ids
+  sg_id      = module.security-groups.msk_sg_id
+  vpc_id     = var.vpc_id
+}
+
 module "s3" {
   source = "./modules/s3"
 }
